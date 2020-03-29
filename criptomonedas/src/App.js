@@ -17,13 +17,13 @@ function App() {
   useEffect(() => {
     const consultarPrecios = async () => {
       if (monedaConsulta === '') return null
-      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${monedaConsulta}&tsyms=${criptomonedaElegidaConsulta}`
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomonedaElegidaConsulta}&tsyms=${monedaConsulta}`
       const resultado = await axios.get(url)
       guardarCargando(true)
       console.log(resultado);
       setTimeout(() =>{
         guardarCargando(false)
-        guardarResultadoDefinitivo(resultado.data.DISPLAY[monedaConsulta][criptomonedaElegidaConsulta])
+        guardarResultadoDefinitivo(resultado.data.DISPLAY[criptomonedaElegidaConsulta][monedaConsulta])
       },3000)
     }
 
